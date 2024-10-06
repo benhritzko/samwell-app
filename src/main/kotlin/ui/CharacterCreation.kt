@@ -37,8 +37,10 @@ fun ChararacterCreationPage(vm: CharacterCreationViewModel) {
                 }
             }
         }
-
-
+        // Do not do this
+        //if (character.classType==ClassType.FIGHTER){
+        //    Text("Big Chungus")
+        //}
 
         Spacer(modifier = Modifier.height(50.dp))
 
