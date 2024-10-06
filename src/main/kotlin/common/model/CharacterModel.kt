@@ -7,6 +7,7 @@ enum class ClassType {
     ROGUE,
     PALADIN,
     WIZARD,
-    MONK
+    MONK,
+    Sorcerer
 }
 
