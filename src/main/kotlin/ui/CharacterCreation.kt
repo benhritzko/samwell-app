@@ -25,6 +25,23 @@ fun ChararacterCreationPage(vm: CharacterCreationViewModel) {
 
         Spacer(modifier = Modifier.height(50.dp))
 
+        var levelToggle by remember { mutableStateOf(false) }
+        Text("Charcter Level", modifier = Modifier.onClick(onClick = { levelToggle = !levelToggle }))
+        Text(character.characterLevel.toString())
+        Box {
+            DropdownMenu(levelToggle, { levelToggle = !levelToggle }) {
+                (1..25).forEach { characterLevel ->
+                    DropdownMenuItem(onClick = { vm.updateSelectedLevel(characterLevel) }) {
+                        Text(characterLevel.toString())
+                    }
+                }
+            }
+        }
+
+
+
+        Spacer(modifier = Modifier.height(50.dp))
+
         var classToggle by remember { mutableStateOf(false) }
         Text("Class", modifier = Modifier.onClick(onClick = { classToggle = !classToggle }))
         Text(character.classType.toString())

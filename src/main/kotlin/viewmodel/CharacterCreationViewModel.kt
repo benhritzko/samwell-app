@@ -18,7 +18,7 @@ class CharacterCreationViewModel(val characterRepository: CharacterRepository = 
     //This could possible leak, but meh deal with it later
     private val scope = CoroutineScope(Dispatchers.Default)
 
-    private val _character: MutableStateFlow<CharacterModel> = MutableStateFlow(CharacterModel("menwell", "chungito", ClassType.FIGHTER))
+    private val _character: MutableStateFlow<CharacterModel> = MutableStateFlow(CharacterModel("menwell", "chungito", ClassType.FIGHTER, 1))
     val character: StateFlow<CharacterModel> = _character.asStateFlow()
 
     fun updateName(name: String) {
@@ -30,6 +30,12 @@ class CharacterCreationViewModel(val characterRepository: CharacterRepository = 
     fun updateSelectedClass(selectedClassType: ClassType) {
         _character.getAndUpdate {
             it.copy(classType = selectedClassType)
+        }
+    }
+
+    fun updateSelectedLevel(selectedCharacterLevel: Int) {
+        _character.getAndUpdate {
+            it.copy(characterLevel = selectedCharacterLevel)
         }
     }
 
