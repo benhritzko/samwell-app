@@ -8,6 +8,6 @@ enum class ClassType {
     PALADIN,
     WIZARD,
     MONK,
-    Sorcerer
+    SORCERER
 }
 
