@@ -15,10 +15,10 @@ import repository.CharacterRepository
 @Stable
 class CharacterCreationViewModel(val characterRepository: CharacterRepository = CharacterRepository.INSTANCE) {
 
-    //This could possible leak, but meh deal with it later
+    //This could possibly leak, but meh deal with it later
     private val scope = CoroutineScope(Dispatchers.Default)
 
-    private val _character: MutableStateFlow<CharacterModel> = MutableStateFlow(CharacterModel("menwell", "chungito", ClassType.FIGHTER, 1))
+    private val _character: MutableStateFlow<CharacterModel> = MutableStateFlow(CharacterModel("menwell", "chungito", ClassType.ASTROLOGER, 1))
     val character: StateFlow<CharacterModel> = _character.asStateFlow()
 
     fun updateName(name: String) {

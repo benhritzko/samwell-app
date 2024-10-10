@@ -15,7 +15,7 @@ import viewmodel.CharacterCreationViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ChararacterCreationPage(vm: CharacterCreationViewModel) {
+fun CharacterCreationPage(vm: CharacterCreationViewModel) {
 
     val character by vm.character.collectAsState()
 
@@ -26,7 +26,7 @@ fun ChararacterCreationPage(vm: CharacterCreationViewModel) {
         Spacer(modifier = Modifier.height(50.dp))
 
         var levelToggle by remember { mutableStateOf(false) }
-        Text("Charcter Level", modifier = Modifier.onClick(onClick = { levelToggle = !levelToggle }))
+        Text("Character Level", modifier = Modifier.onClick(onClick = { levelToggle = !levelToggle }))
         Text(character.characterLevel.toString())
         Box {
             DropdownMenu(levelToggle, { levelToggle = !levelToggle }) {
@@ -37,21 +37,33 @@ fun ChararacterCreationPage(vm: CharacterCreationViewModel) {
                 }
             }
         }
-        // Do not do this
-        //if (character.classType==ClassType.FIGHTER){
-        //    Text("Big Chungus")
-        //}
+
 
         Spacer(modifier = Modifier.height(50.dp))
 
         var classToggle by remember { mutableStateOf(false) }
         Text("Class", modifier = Modifier.onClick(onClick = { classToggle = !classToggle }))
-        Text(character.classType.toString())
+        Text(character.classType.displayName)
         Box {
             DropdownMenu(classToggle, { classToggle = !classToggle }) {
                 ClassType.entries.forEach { classType ->
                     DropdownMenuItem(onClick = { vm.updateSelectedClass(classType) }) {
-                        Text(classType.name)
+                        Text(classType.displayName)
+                    }
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(50.dp))
+
+        var classDetails by remember { mutableStateOf(false) }
+        Text("Class Abilities", modifier = Modifier.onClick(onClick = { classDetails = !classDetails }))
+        Text("Abilities")
+        Box {
+            DropdownMenu(classDetails, { classDetails = !classDetails }) {
+                character.classType.abilityList.forEach { ability ->
+                    DropdownMenuItem(onClick = { }) {
+                        Text(ability)
                     }
                 }
             }
