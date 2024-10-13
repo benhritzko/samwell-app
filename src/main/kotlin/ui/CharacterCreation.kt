@@ -1,21 +1,21 @@
 package ui
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.onClick
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import common.model.CharacterModel
 import common.model.ClassType
 import viewmodel.CharacterCreationViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun CharacterCreationPage(vm: CharacterCreationViewModel) {
+fun characterCreationPage(vm: CharacterCreationViewModel) {
 
     val character by vm.character.collectAsState()
 
@@ -61,8 +61,11 @@ fun CharacterCreationPage(vm: CharacterCreationViewModel) {
         Text("Abilities")
         Box {
             DropdownMenu(classDetails, { classDetails = !classDetails }) {
-                character.classType.abilityList.forEach { ability ->
-                    DropdownMenuItem(onClick = { }) {
+                character.classType.abilityList.take(character.characterLevel)
+                    .mapIndexed{ index,ability -> "Level:"+(index+1) +" "+ ability}
+                    //.filter { ability -> ability.contains("Chungus")}
+                    .forEach { ability ->
+                    DropdownMenuItem(onClick = { },Modifier.padding(5.dp).background(Color.LightGray) ) {
                         Text(ability)
                     }
                 }
