@@ -56,7 +56,7 @@ val colossusList = listOf(
             " \n" +
             "\n" +
     "Growth: You can consume the suffering to increase your max health by the amount of suffering consumed ,your current health increases proportionally with the max health increase. You can use this twice per combat, three times at level 6, four at 10, 5 at 15, and 6 at 20 ",
-
+    ""
 
 
 )
